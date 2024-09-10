@@ -1,6 +1,7 @@
 // imports
 import { Heading, TaskWithID, Todo } from "@/types";
 import { Database } from "@sqlitecloud/drivers";
+import { NextResponse } from "next/server";
 
 // revalidate using ISR
 export const revalidate = 60;
@@ -34,7 +35,5 @@ export async function GET() {
     };
   });
 
-  return {
-    todos,
-  };
+  return NextResponse.json({ todos });
 }

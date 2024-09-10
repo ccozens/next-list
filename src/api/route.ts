@@ -1,5 +1,5 @@
 // imports
-import { type NextRequest } from "next/server";
+import { Heading, TaskWithID, Todo } from "@/types";
 import { Database } from "@sqlitecloud/drivers";
 
 // revalidate using ISR

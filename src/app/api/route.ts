@@ -6,8 +6,19 @@ import { NextResponse } from "next/server";
 // revalidate using ISR
 export const revalidate = 60;
 
+
+export async function GET() {
+// Access environment variable
+const connectionString = process.env.SQLITECLOUD_CONNECTION_STRING;
+
 // set database to use
-const database = new Database(process.env.SQLITECLOUD_CONNECTION_STRING);
+if (!connectionString) {
+  throw new Error("SQLITECLOUD_CONNECTION_STRING is not set");
+}
+
+// set database to use
+const database = new Database(connectionString);
+
 const setDatabase = async () => {
   await database.sql`USE DATABASE svelte_lists.sqlite`;
 };
@@ -15,9 +26,8 @@ const setDatabase = async () => {
 await setDatabase();
 
 // fetch data
-export async function GET() {
   // get data
-  const headings: Heading[] = await database.sql`SELECT * FROM headings`;
+ const headings: Heading[] = await database.sql`SELECT * FROM headings`;
   const tasks: TaskWithID[] =
     await database.sql`SELECT todo_id, id, text, done FROM tasks`;
 

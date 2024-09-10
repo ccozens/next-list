@@ -1,15 +1,17 @@
 // `app/page.tsx`
 
-// import s
+
+// imports
 import { Todo } from "@/types";
+import { todos } from './todos';
+
 export default async function Page() {
-  // // Fetch data from the API route
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`);
-  const data = await res.json();
+  // Fetch data from the API route
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`);
+  // const data = await res.json();
 
-
-  // // Access the todos from the fetched data
-  const { todos } = data;
+  // Access the todos from the fetched data
+  // const { todos } = data;
 
   return (
     <main>
